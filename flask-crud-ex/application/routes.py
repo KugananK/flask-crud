@@ -1,14 +1,22 @@
 from application import app, db
 from application.models import ToDos
-from flask import redirect, url_for
+from flask import redirect, url_for, render_template
 
 @app.route('/')
 def index():
     todo = ToDos.query.all()
-    empstr = ""
-    for t in todo:
-        empstr += f'{t.id} {t.task}  {t.completed} <br>'
-    return empstr
+    # empstr = ""
+    # for t in todo:
+    #     empstr += f'{t.id} {t.task}  {t.completed} <br>'
+    # return empstr
+    return render_template('task.html', todos=todo)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/tasklist')
+def tasklist():
 
 @app.route('/add/<t>')
 def add(t):
