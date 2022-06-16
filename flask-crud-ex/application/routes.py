@@ -7,16 +7,14 @@ def index():
     todo = ToDos.query.all()
     # empstr = ""
     # for t in todo:
-    #     empstr += f'{t.id} {t.task}  {t.completed} <br>'
+    #     empstr += f'{t.id} {t.task}  {t.completed} <br>' 
     # return empstr
-    return render_template('task.html', todos=todo)
+    return render_template("task.html", todos=todo)
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template("about.html")
 
-@app.route('/tasklist')
-def tasklist():
 
 @app.route('/add/<t>')
 def add(t):
@@ -45,7 +43,7 @@ def update(id, newtask):
     todo.task = newtask
     db.session.commit()
     return redirect(url_for('index'))
-    
+
 @app.route('/delete/<deltask>')
 def delete(deltask):
     todo = ToDos.query.filter_by(task=deltask).first()
